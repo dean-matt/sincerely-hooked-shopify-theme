@@ -1,0 +1,50 @@
+<div id="box" data-variant-id="{{ boxVariantId }}" data-count="0">
+  <div class="grid"></div>
+  <div class="grid"></div>
+  <div class="grid"></div>
+  <div class="grid"></div>
+  <div class="grid"></div>
+  <div class="grid"></div>
+  <div class="grid"></div>
+  <div class="grid"></div>
+  <div id="selection-counter">
+    <div id="box">
+      test
+    </div>
+    ??? of ??? selected
+  </div>
+</div>
+
+<div id="flavors">
+  {% for variant in product.variants %}
+  {% if variant.title != "Box" %}
+  <a data-variant-id="{{ variant.id }}" data-variant-title="{{ variant.title }}" href="#">
+    <img src="{{ variant.image.src | img_url: '190x' }}" alt="{{ variant.title }}">
+    <div class="title">{{ variant.title }}</div>
+  </a>
+  {% endif %}
+  {% endfor %}
+</div>
+
+<script>
+  const box = document.querySelector('#box');
+  
+  document.querySelectorAll('#flavors a').forEach(flavor => {flavor.addEventListener('click', () => {
+                                                                                     box.setAttribute("data-count", parseInt(box.getAttribute("data-count")) + 1);
+                                                                                     console.log(box.getAttribute("data-count"));
+                                                            });
+  });
+//   	$('#flavors a').click(function(e) {
+//       console.log("Hello");
+// 	});
+// 	$('#flavors a').click(function(e) {
+//       var boxItem = $('#box').find('.flavor.empty:first').append($(this).html());
+//       $(boxItem).attr({'data-variant-id': $(this).attr('data-variant-id'), 'data-variant-title': $(this).attr('data-variant-title')});
+//       $('<a class="remove" href="#"><i class="fa fa-times"></i></a>').insertAfter('.flavor.empty:first');
+//       $(boxItem).removeClass('empty');
+//       $('#box').attr('data-count', parseInt($('#box').attr('data-count')) + 1);
+//       console.log("Hello");
+//       $('#selection-counter').html($('#box').attr('data-count') + ' of ' + $('#box-sizes .selected a').attr('data-quantity') + ' selected');
+//       e.preventDefault();
+// 	});
+</script>
