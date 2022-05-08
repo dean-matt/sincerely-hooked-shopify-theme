@@ -1,6 +1,6 @@
 {{ 'product-box.css' | asset_url | stylesheet_tag }}
 
-<div class="product-box">
+<section id="ProductBox-{{ section.id }}" class="page-width section-{{ section.id }}-padding" data-section="{{ section.id }}">
   <h1>{{ product.title }}</h1>
   {% for variant in product.variants %}
   {% if variant.title == "Size" %}
@@ -47,4 +47,4 @@
   //       e.preventDefault();
   // 	});
   </script>
-</div>
+</section>
