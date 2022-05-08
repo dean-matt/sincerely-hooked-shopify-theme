@@ -1,4 +1,4 @@
-<div id="box" data-variant-id="{{ boxVariantId }}" data-count="0">
+<div id="box" data-variant-id=" {{ product.variants["Size"].id  }} " data-count="0">
   <div class="grid"></div>
   <div class="grid"></div>
   <div class="grid"></div>
@@ -7,6 +7,10 @@
   <div class="grid"></div>
   <div class="grid"></div>
   <div class="grid"></div>
+</div>
+
+<div id="box-size" data-quantity="0">
+  Box size is {{ product.variants["Size"].inventory_quantity  }}
 </div>
 
 <div id="selection-counter">
@@ -16,9 +20,9 @@
   ??? of ??? selected
 </div>
 
-<div id="variant">
+<div id="variants">
   {% for variant in product.variants %}
-  {% if variant.title != "Box" %}
+  {% if variant.title != "Size" %}
   <a data-variant-id="{{ variant.id }}" data-variant-title="{{ variant.title }}" href="#">
     <img src="{{ variant.image.src | img_url: '190x' }}" alt="{{ variant.title }}">
     <div class="title">{{ variant.title }}</div>
@@ -32,7 +36,7 @@
   const boxSize = document.querySelector('#box-size');
   const selection_counter = document.querySelector('#selection-counter');
   
-  document.querySelectorAll('#variant a').forEach(flavor => {flavor.addEventListener('click', 
+  document.querySelectorAll('#variants a').forEach(flavor => {flavor.addEventListener('click', 
                                                                                      () => {
                                                                                         box.setAttribute("data-count", parseInt(box.getAttribute("data-count")) + 1);
                                                                                         selection_counter.html(box.getAttribute("data-count") + ' of ' + boxSize.getAttribute("data-quantity") + ' selected');
