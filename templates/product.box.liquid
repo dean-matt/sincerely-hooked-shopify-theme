@@ -39,7 +39,7 @@
   document.querySelectorAll('#variants a').forEach(flavor => {flavor.addEventListener('click', 
                                                                                      () => {
                                                                                         box.setAttribute("data-count", parseInt(box.getAttribute("data-count")) + 1);
-                                                                                        selection_counter.html(box.getAttribute("data-count") + ' of ' + boxSize.getAttribute("data-quantity") + ' selected');
+                                                                                        selection_counter.innerHtml = box.getAttribute("data-count") + ' of ' + boxSize.getAttribute("data-quantity") + ' selected';
                                                                                         console.log(box.getAttribute("data-count"));
                                                                                       }
                                                                                     );
