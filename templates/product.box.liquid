@@ -6,7 +6,7 @@
     {% if variant.title == "Size" %}
       <div id="box" data-variant-id="{{ variant.id  }}" data-count="0" box-size="{{ variant.inventory_quantity  }}">
         {% for i in (1..variant.inventory_quantity)%}
-          <div class="selected-item"></div>
+          <div class="item-in-box"></div>
         {% endfor %}
       </div>
       <div id="selection-counter">0 of {{ variant.inventory_quantity  }} selected</div>
