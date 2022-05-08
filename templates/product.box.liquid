@@ -1,49 +1,51 @@
 {{ 'product-box.css' | asset_url | stylesheet_tag }}
 
-<div id="product-box">
-  {% for variant in product.variants %}
-  {% if variant.title == "Size" %}
-    <div id="box" data-variant-id="{{ variant.id  }}" data-count="0" box-size="{{ variant.inventory_quantity  }}">
-      {% for i in (1..{{ variant.inventory_quantity  }})%}
-        <div class="selected-item"></div>
-      {% endfor %}
+<div>
+  <div id="product-box">
+    {% for variant in product.variants %}
+    {% if variant.title == "Size" %}
+      <div id="box" data-variant-id="{{ variant.id  }}" data-count="0" box-size="{{ variant.inventory_quantity  }}">
+        {% for i in (1..variant.inventory_quantity)%}
+          <div class="selected-item"></div>
+        {% endfor %}
+      </div>
+      <div id="selection-counter">0 of {{ variant.inventory_quantity  }} selected</div>
+    {% else %}
+    <div id="variants">
+      <a data-variant-id="{{ variant.id }}" data-variant-title="{{ variant.title }}" href="#">
+        <img src="{{ variant.image.src | img_url: '190x' }}" alt="{{ variant.title }}">
+        <div class="title">{{ variant.title }}</div>
+      </a>
     </div>
-    <div id="selection-counter">0 of {{ variant.inventory_quantity  }} selected</div>
-  {% else %}
-  <div id="variants">
-    <a data-variant-id="{{ variant.id }}" data-variant-title="{{ variant.title }}" href="#">
-      <img src="{{ variant.image.src | img_url: '190x' }}" alt="{{ variant.title }}">
-      <div class="title">{{ variant.title }}</div>
-    </a>
+    {% endif %}
+    {% endfor %}
   </div>
-  {% endif %}
-  {% endfor %}
-</div>
 
-<script>
-  const box = document.querySelector('#box');
-  const selection_counter = document.querySelector('#selection-counter');
-  
-  document.querySelectorAll('#variants a').forEach(flavor => {flavor.addEventListener('click', 
-                                                                                     () => {
-                                                                                        box.setAttribute("data-count", parseInt(box.getAttribute("data-count")) + 1);
-                                                                                        selection_counter.innerHTML = box.getAttribute("data-count") + ' of ' + box.getAttribute("box-size") + ' selected';
-                                                                                        console.log(box.getAttribute("data-count"));
-                                                                                      }
-                                                                                    );
-                                                            }
-                                                  );
-//   	$('#flavors a').click(function(e) {
-//       console.log("Hello");
-// 	});
-// 	$('#flavors a').click(function(e) {
-//       var boxItem = $('#box').find('.flavor.empty:first').append($(this).html());
-//       $(boxItem).attr({'data-variant-id': $(this).attr('data-variant-id'), 'data-variant-title': $(this).attr('data-variant-title')});
-//       $('<a class="remove" href="#"><i class="fa fa-times"></i></a>').insertAfter('.flavor.empty:first');
-//       $(boxItem).removeClass('empty');
-//       $('#box').attr('data-count', parseInt($('#box').attr('data-count')) + 1);
-//       console.log("Hello");
-//       $('#selection-counter').html($('#box').attr('data-count') + ' of ' + $('#box-sizes .selected a').attr('data-quantity') + ' selected');
-//       e.preventDefault();
-// 	});
-</script>
+  <script>
+    const box = document.querySelector('#box');
+    const selection_counter = document.querySelector('#selection-counter');
+    
+    document.querySelectorAll('#variants a').forEach(flavor => {flavor.addEventListener('click', 
+                                                                                      () => {
+                                                                                          box.setAttribute("data-count", parseInt(box.getAttribute("data-count")) + 1);
+                                                                                          selection_counter.innerHTML = box.getAttribute("data-count") + ' of ' + box.getAttribute("box-size") + ' selected';
+                                                                                          console.log(box.getAttribute("data-count"));
+                                                                                        }
+                                                                                      );
+                                                              }
+                                                    );
+  //   	$('#flavors a').click(function(e) {
+  //       console.log("Hello");
+  // 	});
+  // 	$('#flavors a').click(function(e) {
+  //       var boxItem = $('#box').find('.flavor.empty:first').append($(this).html());
+  //       $(boxItem).attr({'data-variant-id': $(this).attr('data-variant-id'), 'data-variant-title': $(this).attr('data-variant-title')});
+  //       $('<a class="remove" href="#"><i class="fa fa-times"></i></a>').insertAfter('.flavor.empty:first');
+  //       $(boxItem).removeClass('empty');
+  //       $('#box').attr('data-count', parseInt($('#box').attr('data-count')) + 1);
+  //       console.log("Hello");
+  //       $('#selection-counter').html($('#box').attr('data-count') + ' of ' + $('#box-sizes .selected a').attr('data-quantity') + ' selected');
+  //       e.preventDefault();
+  // 	});
+  </script>
+</div>
