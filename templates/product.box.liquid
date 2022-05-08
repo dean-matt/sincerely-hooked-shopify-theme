@@ -1,6 +1,7 @@
 {{ 'product-box.css' | asset_url | stylesheet_tag }}
 
 <div>
+  <h1>{{ product.options.name }}</h1>
   <div class="product-box">
     {% for variant in product.variants %}
     {% if variant.title == "Size" %}
