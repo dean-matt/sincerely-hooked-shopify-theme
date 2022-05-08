@@ -653,22 +653,24 @@
 
   <div class="products">
     {% for product in collections.all.products %}
-      <a data-variant-id="{{ product.id }}" data-variant-title="{{ product.title }}" href="#">
-        {%- for media in product.media -%}
-          {%- liquid
-            if section.settings.hide_variants and variant_images contains media.src
-              assign variant_image = true
-            else
-              assign variant_image = false
-            endif
+      {% unless product.title contains "Box" %}
+        <a data-variant-id="{{ product.id }}" data-variant-title="{{ product.title }}" href="#">
+          {%- for media in product.media -%}
+            {%- liquid
+              if section.settings.hide_variants and variant_images contains media.src
+                assign variant_image = true
+              else
+                assign variant_image = false
+              endif
 
-            unless media.id == product.selected_or_first_available_variant.featured_media.id
-              render 'product-media', media: media, loop: section.settings.enable_video_looping, variant_image: variant_image
-            endunless
-          -%}
-        {%- endfor -%}
-        <div class="title">{{ product.title }}</div>
-      </a>
+              unless media.id == product.selected_or_first_available_variant.featured_media.id
+                render 'product-media', media: media, loop: section.settings.enable_video_looping, variant_image: variant_image
+              endunless
+            -%}
+          {%- endfor -%}
+          <div class="title">{{ product.title }}</div>
+        </a>
+      {% endunless %}
     {% endfor %}
   </div>
   {% comment %} {% for variant in product.variants %}
