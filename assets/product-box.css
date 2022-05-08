@@ -1,8 +1,14 @@
+.product-box {
+    padding: 20px;
+}
+
 .box {
     display: grid;
     height: 200px;
+    gap: 10px;
 }
 
 .item-in-box {
     display: unset !important;
+    background-color: #00000050;
 }
