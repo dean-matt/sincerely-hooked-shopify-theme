@@ -1,7 +1,7 @@
 <div id="product-box">
   {% for variant in product.variants %}
   {% if variant.title == "Size" %}
-    <div id="box" data-variant-id="{{ variant.id  }}" data-count="0">
+    <div id="box" data-variant-id="{{ variant.id  }}" data-count="0" box-size="{{ variant.inventory_quantity  }}">
       <div class="grid"></div>
       <div class="grid"></div>
       <div class="grid"></div>
@@ -11,8 +11,7 @@
       <div class="grid"></div>
       <div class="grid"></div>
     </div>
-    <div id="box-size" data-quantity="0">Box size is {{ variant.inventory_quantity  }}</div>
-    <div id="selection-counter">0 of {{ variant.inventory_quantity  }} selected</div>
+    <div id="selection-counter">??? of ??? selected</div>
   {% else %}
   <div id="variants">
     <a data-variant-id="{{ variant.id }}" data-variant-title="{{ variant.title }}" href="#">
@@ -26,13 +25,12 @@
 
 <script>
   const box = document.querySelector('#box');
-  const boxSize = document.querySelector('#box-size');
   const selection_counter = document.querySelector('#selection-counter');
   
   document.querySelectorAll('#variants a').forEach(flavor => {flavor.addEventListener('click', 
                                                                                      () => {
                                                                                         box.setAttribute("data-count", parseInt(box.getAttribute("data-count")) + 1);
-                                                                                        selection_counter.innerHtml = box.getAttribute("data-count") + ' of ' + boxSize.getAttribute("data-quantity") + ' selected';
+                                                                                        selection_counter.innerHtml = box.getAttribute("data-count") + ' of ' + box.getAttribute("box-size") + ' selected';
                                                                                         console.log(box.getAttribute("data-count"));
                                                                                       }
                                                                                     );
