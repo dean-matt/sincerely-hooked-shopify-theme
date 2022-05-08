@@ -651,14 +651,12 @@
   {% endif %}
   {% endfor %}
 
-  {% paginate collections["all-products"].products by 1000 %}
-  {% for product in collections["all-products"].products %}
+  {% for product in collections.all.products %}
      <a data-variant-id="{{ product.id }}" data-variant-title="{{ product.title }}" href="#">
        <img src="{{ product.image.src | img_url: '190x' }}" alt="{{ product.title }}">
        <div class="title">{{ product.title }}</div>
      </a>
   {% endfor %}
-  {% endpaginate %}
   {% comment %} {% for variant in product.variants %}
   {% if variant.title == "Size" %}
     <div class="box" data-variant-id="{{ variant.id  }}" data-count="0" box-size="{{ variant.inventory_quantity  }}">
