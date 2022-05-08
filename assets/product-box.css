@@ -3,6 +3,6 @@
     height: 200px;
 }
 
-#item-in-box {
+.item-in-box {
     display: unset;
 }

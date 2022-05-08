@@ -1,17 +1,17 @@
 {{ 'product-box.css' | asset_url | stylesheet_tag }}
 
 <div>
-  <div id="product-box">
+  <div class="product-box">
     {% for variant in product.variants %}
     {% if variant.title == "Size" %}
-      <div id="box" data-variant-id="{{ variant.id  }}" data-count="0" box-size="{{ variant.inventory_quantity  }}">
+      <div class="box" data-variant-id="{{ variant.id  }}" data-count="0" box-size="{{ variant.inventory_quantity  }}">
         {% for i in (1..variant.inventory_quantity)%}
           <div class="item-in-box"></div>
         {% endfor %}
       </div>
-      <div id="selection-counter">0 of {{ variant.inventory_quantity  }} selected</div>
+      <div class="selection-counter">0 of {{ variant.inventory_quantity  }} selected</div>
     {% else %}
-    <div id="variants">
+    <div class="variants">
       <a data-variant-id="{{ variant.id }}" data-variant-title="{{ variant.title }}" href="#">
         <img src="{{ variant.image.src | img_url: '190x' }}" alt="{{ variant.title }}">
         <div class="title">{{ variant.title }}</div>
@@ -22,10 +22,10 @@
   </div>
 
   <script>
-    const box = document.querySelector('#box');
-    const selection_counter = document.querySelector('#selection-counter');
+    const box = document.querySelector('.box');
+    const selection_counter = document.querySelector('.selection-counter');
     
-    document.querySelectorAll('#variants a').forEach(flavor => {flavor.addEventListener('click', 
+    document.querySelectorAll('.variants a').forEach(flavor => {flavor.addEventListener('click', 
                                                                                       () => {
                                                                                           box.setAttribute("data-count", parseInt(box.getAttribute("data-count")) + 1);
                                                                                           selection_counter.innerHTML = box.getAttribute("data-count") + ' of ' + box.getAttribute("box-size") + ' selected';
