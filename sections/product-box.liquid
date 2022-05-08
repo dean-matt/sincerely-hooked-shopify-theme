@@ -637,6 +637,8 @@
     }
   </script>
 
+  // My stuff
+
   <h1>Contents</h1>
   {% for variant in product.variants %}
   {% if variant.title == "Size" %}
@@ -665,24 +667,15 @@
                                                                                           box.setAttribute("data-count", parseInt(box.getAttribute("data-count")) + 1);
                                                                                           selection_counter.innerHTML = box.getAttribute("data-count") + ' of ' + box.getAttribute("box-size") + ' selected';
                                                                                           console.log(box.getAttribute("data-count"));
+                                                                                          event.preventDefault(); // Prevents scrolling to top when link is clicked
                                                                                         }
                                                                                       );
                                                               }
                                                     );
-  //   	$('#flavors a').click(function(e) {
-  //       console.log("Hello");
-  // 	});
-  // 	$('#flavors a').click(function(e) {
-  //       var boxItem = $('#box').find('.flavor.empty:first').append($(this).html());
-  //       $(boxItem).attr({'data-variant-id': $(this).attr('data-variant-id'), 'data-variant-title': $(this).attr('data-variant-title')});
-  //       $('<a class="remove" href="#"><i class="fa fa-times"></i></a>').insertAfter('.flavor.empty:first');
-  //       $(boxItem).removeClass('empty');
-  //       $('#box').attr('data-count', parseInt($('#box').attr('data-count')) + 1);
-  //       console.log("Hello");
-  //       $('#selection-counter').html($('#box').attr('data-count') + ' of ' + $('#box-sizes .selected a').attr('data-quantity') + ' selected');
-  //       e.preventDefault();
-  // 	});
   </script>
+
+  // End of my stuff
+  
 </section>
 
 {% schema %}
