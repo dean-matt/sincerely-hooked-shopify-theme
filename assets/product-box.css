@@ -9,3 +9,9 @@
     display: unset !important;
     background-color: #00000050;
 }
+
+.products {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: auto auto auto auto;
+}
