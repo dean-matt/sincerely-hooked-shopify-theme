@@ -650,13 +650,15 @@
     <div class="selection-counter">0 of {{ variant.inventory_quantity  }} selected</div>
   {% endif %}
   {% endfor %}
-  
-  {% for product in all_products %}
-    <a data-variant-id="{{ product.id }}" data-variant-title="{{ product.title }}" href="#">
-      <img src="{{ product.image.src | img_url: '190x' }}" alt="{{ product.title }}">
-      <div class="title">{{ product.title }}</div>
-    </a>
+
+  {% paginate collections["all-products"].products by 1000 %}
+  {% for product in collections["all-products"].products %}
+     <a data-variant-id="{{ product.id }}" data-variant-title="{{ product.title }}" href="#">
+       <img src="{{ product.image.src | img_url: '190x' }}" alt="{{ product.title }}">
+       <div class="title">{{ product.title }}</div>
+     </a>
   {% endfor %}
+  {% endpaginate %}
   {% comment %} {% for variant in product.variants %}
   {% if variant.title == "Size" %}
     <div class="box" data-variant-id="{{ variant.id  }}" data-count="0" box-size="{{ variant.inventory_quantity  }}">
