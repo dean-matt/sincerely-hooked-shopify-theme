@@ -1,8 +1,8 @@
-#box {
+.box {
     display: grid;
     height: 200px;
 }
 
 .item-in-box {
-    display: unset;
+    display: unset !important;
 }
