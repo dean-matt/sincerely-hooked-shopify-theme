@@ -7,15 +7,16 @@
   <div class="grid"></div>
   <div class="grid"></div>
   <div class="grid"></div>
-  <div id="selection-counter">
-    <div id="box">
-      test
-    </div>
-    ??? of ??? selected
-  </div>
 </div>
 
-<div id="flavors">
+<div id="selection-counter">
+  <div id="box">
+    test
+  </div>
+  ??? of ??? selected
+</div>
+
+<div id="variant">
   {% for variant in product.variants %}
   {% if variant.title != "Box" %}
   <a data-variant-id="{{ variant.id }}" data-variant-title="{{ variant.title }}" href="#">
@@ -28,12 +29,18 @@
 
 <script>
   const box = document.querySelector('#box');
+  const boxSize = document.querySelector('#box-size');
+  const selection_counter = document.querySelector('#selection-counter');
   
-  document.querySelectorAll('#flavors a').forEach(flavor => {flavor.addEventListener('click', () => {
-                                                                                     box.setAttribute("data-count", parseInt(box.getAttribute("data-count")) + 1);
-                                                                                     console.log(box.getAttribute("data-count"));
-                                                            });
-  });
+  document.querySelectorAll('#variant a').forEach(flavor => {flavor.addEventListener('click', 
+                                                                                     () => {
+                                                                                        box.setAttribute("data-count", parseInt(box.getAttribute("data-count")) + 1);
+                                                                                        selection_counter.html(box.getAttribute("data-count") + ' of ' + boxSize.getAttribute("data-quantity") + ' selected');
+                                                                                        console.log(box.getAttribute("data-count"));
+                                                                                      }
+                                                                                    );
+                                                            }
+                                                  );
 //   	$('#flavors a').click(function(e) {
 //       console.log("Hello");
 // 	});
