@@ -1,15 +1,12 @@
+{{ 'template-giftcard.css' | asset_url | stylesheet_tag }}
+
 <div id="product-box">
   {% for variant in product.variants %}
   {% if variant.title == "Size" %}
     <div id="box" data-variant-id="{{ variant.id  }}" data-count="0" box-size="{{ variant.inventory_quantity  }}">
-      <div class="grid"></div>
-      <div class="grid"></div>
-      <div class="grid"></div>
-      <div class="grid"></div>
-      <div class="grid"></div>
-      <div class="grid"></div>
-      <div class="grid"></div>
-      <div class="grid"></div>
+      {% for i in (1..{{ variant.inventory_quantity  }})%}
+        <div class="selected-item"></div>
+      {% endfor %}
     </div>
     <div id="selection-counter">0 of {{ variant.inventory_quantity  }} selected</div>
   {% else %}
